@@ -75,6 +75,10 @@ function createResponsePayload(requestBody) {
 }
 
 app.post('/', function(request, response) {
+    var body = request.body;
+    var command = body ? body.command : null;
+    command = command || '/anon';
+    
     var payloadOption = createResponsePayload(request.body);
     if (payloadOption.error) {
         response.end(payloadOption.error);
@@ -84,7 +88,7 @@ app.post('/', function(request, response) {
     requestify.post(process.env.POSTBACK_URL, payloadOption).then(function() {
         response.end('Delivered! :cop:');
     }, function(error) {
-        response.end('Unable to post your anonymous message: ' + error.message);
+        response.end('Unable to post your anonymous message: ' + error.message + '\n' + getUsageHelp(command));
     });
 });
 
