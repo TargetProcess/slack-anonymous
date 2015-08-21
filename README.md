@@ -8,7 +8,19 @@ Express your personal thoughts and desires in the depersonalized way concealing 
 
 ![](https://raw.githubusercontent.com/TargetProcess/slack-anonymous/master/docs/images/anon2.png)
 
-When someone posts `/anon Text` in any channel or group, the message is sent to this simple service, which sends the text back to Slack (via Incoming WebHook) with a modified text, omitting the information about the author of the message.
+When someone posts `/anon @user Some anonymous text`, that message is sent to this simple service, which sends the text back to the specified user with a modified text, omitting the information about the author of the message.
+
+To avoid revealing your identity by accidentally typing the wrong command, it's recommended to post all messages in your private conversation with SlackBot.
+
+## Usage
+
+*Assuming that the configured slash-command is called "/anon" *
+
+- `/anon help` -- Displays the help information
+- `/anon @user Text` -- Sends `Text' to the specified user
+- `/anon #channel Text` -- Sends `Text' to the specified public channel
+- `/anon group Text` -- Sends `Text' to the specified private group
+- `/anon :here Text` -- Sends `Text' to the current channel/group/DM, where the message is typed
 
 ## Deployment
 
